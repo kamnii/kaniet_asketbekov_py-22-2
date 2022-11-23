@@ -9,12 +9,25 @@
             width: 80%;
             flex-wrap: wrap;
         }
+        .category {
+            display: flex;
+            justify-content: space-between;
+            width: 20%;
+        }
+        .card_body > img {
+            width: 35px;
+        }
     </style>
     <div class="categories">
         {% for category in categories %}
-            <div class="card" style="width: 20%;">
+            <div class="category" style="width: 100%;">
                 <div class="card_body">
-                    <h5>{{ category.title }}</h5>
+                    <img src="/media/{{ category.icon }}" alt="">
+                    <h3>
+                        <a href="/products/?category_id={{ category.id }}">
+                            {{ category.title }}
+                        </a>
+                    </h3>
                 </div>
             </div>
         {% endfor %}
