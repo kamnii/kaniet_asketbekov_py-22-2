@@ -14,7 +14,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=150)
     image = models.ImageField()
     price = models.IntegerField()
     description = models.TextField()
@@ -30,5 +30,5 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.author}_{self.product}'
+        return f'{self.author.username}_{self.product}'
 

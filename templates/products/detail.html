@@ -6,42 +6,52 @@
             width: 70%;
             margin-left: 15%;
         }
-
-        .comments {
+        .reviews {
             width: 70%;
             margin-left: 15%;
         }
-
-        .comment {
+        .review {
             background: #242b2e;
             color: #fff;
             margin-bottom: 20px;
             padding: 10px;
         }
+        .create_review {
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
     <div class="product">
         <div class="img">
             <img src="/media/{{ product.image }}/" alt="">
-
         </div>
         <div class="info">
             <div style="display: flex; justify-content: space-between">
                 <h1>{{ product.title }}</h1>
+                <h1>{{ product.author.username }}</h1>
             </div>
-            <h3>{{ product.price }} сом</h3>
             <h5>{{ product.description }}</h5>
             <div class="categories">
                 {% for category in categories %}
-                    <div><h4>{{ category.title }}</h4></div>
+                    <p>{{ category.title }}</p>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <div class="comments">
-        {% for comment in comments %}
-            <div class="comment">
-                <p class="author">{{ comment.author.username }}</p>
-                <p class="text">{{ comment.text }}</p>
+    <div class="create_review">
+        <form action="/products/{{ product.id }}/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Оставить комментарий">
+        </form>
+    </div>
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="review">
+                <p class="author">{{ review.author.username }}</p>
+                <p class="text">{{ review.text }}</p>
             </div>
         {% endfor %}
     </div>
