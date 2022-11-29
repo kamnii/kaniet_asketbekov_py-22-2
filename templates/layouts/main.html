@@ -29,7 +29,17 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="/products">Products</a>
                     <a class="nav-link" href="/categories">Categories</a>
-                    <a class="nav-link" href="/products/create" style="color: green;">Create product</a>
+
+                    {% if user %}
+                        <a class="nav-link" href="/products/create" style="color: green;">
+                            Create product
+                        </a>
+                        <p class="nav-link">User: {{ user.username }}</p>
+                        <a href="/users/logout/" class="btn btn-primary">Logout</a>
+                    {% else %}
+                        <a href="/users/login/" class="nav-link">Login</a>
+                        <a href="/users/register/" class="nav-link">Register</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
