@@ -10,6 +10,15 @@
             flex-wrap: wrap;
         }
     </style>
+    <div class="search">
+        <form action="/products/" method="get">
+            {% if category_id %}
+                <input type="hidden" name="category_id" value="{{ category_id }}">
+            {% endif %}
+            <span>Search</span>
+            <input type="text" name="search" value="">
+        </form>
+    </div>
     <div class="products">
         {% for product in products %}
             <div class="card" style="width: 90%;">
@@ -21,6 +30,19 @@
                     <a href="/products/{{ product.id }}/" class="btn btn-primary">More</a>
                 </div>
             </div>
+        {% endfor %}
+    </div>
+    <div>
+        {% for page in max_page %}
+            {% if category_id %}
+                <a href="/products/?page={{ page }}&&category_id={{ category_id }}">
+                <button>{{ page }}</button>
+            </a>
+            {% else %}
+            <a href="/products/?page={{ page }}">
+                <button>{{ page }}</button>
+            </a>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
