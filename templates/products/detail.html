@@ -30,22 +30,26 @@
         <div class="info">
             <div style="display: flex; justify-content: space-between">
                 <h1>{{ product.title }}</h1>
-                <h1>{{ product.author.username }}</h1>
+                <h1>Seller: {{ product.author.username }}</h1>
             </div>
-            <h5>{{ product.description }}</h5>
+            <h4>Price: {{ product.price }} som</h4>
+            <h5>Specifications: {{ product.description }}</h5>
             <div class="categories">
                 {% for category in categories %}
-                    <p>{{ category.title }}</p>
+                    <p>Category: {{ category.title }}</p>
                 {% endfor %}
             </div>
         </div>
     </div>
     <div class="create_review">
-        <form action="/products/{{ product.id }}/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" class="btn btn-primary" value="Оставить комментарий">
-        </form>
+        {% if user %}
+            <h5>Reviews:</h5>
+            <form action="/products/{{ product.id }}/" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="btn btn-primary" value="Оставить комментарий">
+            </form>
+        {% endif %}
     </div>
     <div class="reviews">
         {% for review in reviews %}

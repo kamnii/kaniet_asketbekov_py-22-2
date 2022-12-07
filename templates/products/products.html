@@ -36,12 +36,12 @@
         {% for page in max_page %}
             {% if category_id %}
                 <a href="/products/?page={{ page }}&&category_id={{ category_id }}">
-                <button>{{ page }}</button>
-            </a>
+                    <button>{{ page }}</button>
+                </a>
             {% else %}
-            <a href="/products/?page={{ page }}">
-                <button>{{ page }}</button>
-            </a>
+                <a href="/products/?page={{ page }}">
+                    <button>{{ page }}</button>
+                </a>
             {% endif %}
         {% endfor %}
     </div>
